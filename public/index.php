@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set('America/Sao_Paulo'); // Sincroniza o horário do PHP com o do Brasil
+date_default_timezone_set('America/Sao_Paulo'); 
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -17,7 +17,7 @@ $prioridadeModel = new Prioridade($db);
 
 $mensagem = "";
 
-// ROTAS
+
 $action = $_GET['action'] ?? null;
 
 if ($action === 'criar' && $_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -32,15 +32,15 @@ if ($action === 'finalizar' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $mensagem = $controller->finalizar($_POST['id'], $_POST['solucao']);
 }
 
-// Dados
+
 $chamados_raw = $controller->listar();
-// Garante que seja um array para podermos percorrer mais de uma vez (para os cards e para a tabela)
+
 $chamados = is_array($chamados_raw) ? $chamados_raw : $chamados_raw->fetchAll(PDO::FETCH_ASSOC);
 
 $setores = $setorModel->listar();
 $prioridades = $prioridadeModel->listar();
 
-// Cálculos para o Dashboard
+
 $countAbertos = 0;
 $countEmAtendimento = 0;
 $countFinalizados = 0;
@@ -176,7 +176,7 @@ foreach ($chamados as $c) {
                         </thead>
                         <tbody>
                             <?php foreach ($chamados as $c): 
-                                // Cálculo do Tempo
+                               
                                 $horas = 0;
                                 if ($c['data_inicio']) {
                                     $inicio = strtotime($c['data_inicio']);
@@ -184,11 +184,11 @@ foreach ($chamados as $c) {
                                     $horas = ($fim - $inicio) / 3600;
                                 }
                                 
-                                // Regra de Atraso
+                               
                                 $estourouSLA = ($horas > $c['tempo_estimado']);
                                 $classLinha = ($estourouSLA && $c['status'] !== 'Finalizado') ? "table-danger" : "";
                                 
-                                // Estilo do Status
+                                
                                 $badgeClass = 'bg-secondary';
                                 if ($c['status'] == 'Em atendimento') $badgeClass = 'bg-primary';
                                 if ($c['status'] == 'Finalizado') $badgeClass = 'bg-success';

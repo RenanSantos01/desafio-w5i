@@ -7,7 +7,7 @@ class Chamado {
         $this->conn = $db;
     }
 
-    // Criar chamado
+    
     public function create($data) {
         $query = "INSERT INTO {$this->table} 
                   (setor_id, prioridade_id, status) 
@@ -24,7 +24,7 @@ class Chamado {
         return "Erro ao criar chamado";
     }
 
-    // Iniciar atendimento
+    
     public function iniciar($id) {
         if (!is_numeric($id)) {
             return "ID inválido";
@@ -69,7 +69,7 @@ class Chamado {
         return "Chamado finalizado com sucesso";
     }
 
-    // Listar chamados (com JOIN)
+    
     public function listar() {
         $query = "SELECT 
                     c.*, 

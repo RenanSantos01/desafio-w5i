@@ -9,18 +9,32 @@ class ChamadoController {
     }
 
     public function store($data) {
-        return $this->model->create($data);
+        
+        $this->model->create($data);
+        
+        
+        header("Location: index.php");
+        exit; 
     }
 
     public function iniciar($id) {
-        return $this->model->iniciar($id);
+        
+        $this->model->iniciar($id);
+        
+        
+        header("Location: index.php");
+        exit;
     }
 
     public function finalizar($id, $solucao) {
-        return $this->model->finalizar($id, $solucao);
+        // Finaliza o chamado
+        $this->model->finalizar($id, $solucao);
+        
+        
+        header("Location: index.php");
+        exit;
     }
-
-    // ✅ MÉTODO QUE ESTAVA FALTANDO
+    
     public function listar() {
         return $this->model->listar();
     }
