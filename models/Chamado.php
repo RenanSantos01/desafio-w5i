@@ -45,7 +45,7 @@ class Chamado {
         return "Chamado iniciado com sucesso";
     }
 
-    // Finalizar atendimento
+   
     public function finalizar($id, $solucao) {
         if (!is_numeric($id)) {
             return "ID inválido";

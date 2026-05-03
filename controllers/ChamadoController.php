@@ -27,7 +27,7 @@ class ChamadoController {
     }
 
     public function finalizar($id, $solucao) {
-        // Finaliza o chamado
+        
         $this->model->finalizar($id, $solucao);
         
         
